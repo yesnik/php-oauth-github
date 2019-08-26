@@ -1,34 +1,22 @@
 <?php
 
 $accessTokenUrl =  'https://github.com/login/oauth/access_token';
-
-$clientId = $_POST['client_id'];
-$clientSecret = $_POST['client_secret'];
-$code = $_POST['code'];
-$redirectUri = $_POST['redirect_uri'];
-$state = $_POST['state'];
-
-// set post fields
-$post = [
-    'client_id' => $clientId,
-    'client_secret' => $clientSecret,
-    'code'   => $code,
-    'redirect_uri' => $redirectUri,
-    'state' => $state,
-];
-
 $ch = curl_init($accessTokenUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$post = [
+    'client_id' => $_POST['client_id'],
+    'client_secret' => $_POST['client_secret'],
+    'code'   => $_POST['code'],
+    'redirect_uri' => $_POST['redirect_uri'],
+    'state' => $_POST['state'],
+];
 curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Accept: application/json'
 ]);
 
-// execute!
 $response = curl_exec($ch);
-// Example or $response: '{"access_token":"dc81e45c07fa7bf6b6acae9396c0747e2b03e571",
-// "token_type":"bearer","scope":"gist,user:email"}'
-
 curl_close($ch);
 
 $responseParams = json_decode($response);
@@ -42,13 +30,15 @@ $accessToken = $responseParams->access_token;
 
 ?>
 
-<h3>3. Get info about user using access_token</h3>
+<h3>3. Get info about user</h3>
 
-<p>We have made POST request to <?php echo $accessTokenUrl; ?></p>
+<p>We got from Github:</p>
 
-<p>We got these params from GitHub:</p>
+<ul>
+  <li>access_token = <?php echo $accessToken; ?></li>
+</ul>
 
-<?php var_dump($responseParams); ?>
+<h4>Use access_token to get info about user</h4>
 
 <p>Make GET request to URL: https://api.github.com/user</p>
 

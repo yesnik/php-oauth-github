@@ -2,13 +2,6 @@
 
 require_once './config.php';
 
-/**
-Step 2.
-If the user accepts your request, GitHub redirects back to this page 
-with a temporary code in a code parameter as well as the state 
-you provided in the previous step in a state parameter.
-*/
-
 if (empty($_GET['state'])) {
   echo 'Undefined GET param `state`';
   exit;
@@ -31,7 +24,6 @@ if (empty($_GET['code'])) {
 
 // The temporary code issued by Github will expire after 10 minutes
 $code = $_GET['code'];
-
 ?>
 
 <h3>2. Get access_token from GitHub</h3>
@@ -43,8 +35,7 @@ $code = $_GET['code'];
   <li>state = <?php echo $state; ?></li>
 </ul>
 
-
-<h4>Let's exchange code param for an access token:</h4>
+<h4>Let's exchange code for an access_token:</h4>
 
 <p>Make POST request to URL: https://github.com/login/oauth/access_token</p>
 
@@ -57,11 +48,13 @@ $code = $_GET['code'];
   <input type="text" name="state" value="<?php echo $state; ?>">
   <br>
 
-  <label>client_id (it's OAuth App setting at GitHub)</label>
+  <p>These params we got from our OAuth App Settings at Github:</p>
+
+  <label>client_id</label>
   <input type="text" name="client_id" value="<?php echo $clientId; ?>">
   <br>
 
-  <label>client_secret (it's OAuth App setting at GitHub)</label>
+  <label>client_secret</label>
   <input type="text" name="client_secret" value="<?php echo $clientSecret; ?>">
   <br>
 

@@ -1,10 +1,9 @@
 <?php
 
-$accessToken = $_GET['access_token'];
 $url = 'https://api.github.com/user';
+$ch = curl_init($url);
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
+$accessToken = $_GET['access_token'];
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Authorization: token ' . $accessToken,
     'User-Agent: yesnik.ru'
@@ -20,15 +19,24 @@ $responseObject = json_decode($response);
 
 <h3>4. Display user info from GitHub</h3>
 
-<p>We have made request to URL: <?php echo $url; ?></p>
+<p>We got from Github:</p>
 
-<p>Result:</p>
+<div>
+<?php echo $response; ?>
+</div>
 
-<h4>User name: <?php echo $responseObject->name ?></h4>
-
-<h5>Avatar image</h5>
-<img width="100" src="<?php echo $responseObject->avatar_url; ?>">
-
-<h5>Location: <?php echo $responseObject->location; ?></h5>
-
-<h5>Account created at: <?php echo $responseObject->created_at; ?></h5>
+<ul>
+  <li>
+    Avatar image: <br>
+    <img width="100" src="<?php echo $responseObject->avatar_url; ?>">
+  </li>
+  <li>
+    User name: <?php echo $responseObject->name ?>
+  </li>
+  <li>
+    Location: <?php echo $responseObject->location; ?>
+  </li>
+  <li>
+    Account created at: <?php echo $responseObject->created_at; ?>
+  </li>
+</ul>

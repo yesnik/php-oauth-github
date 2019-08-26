@@ -1,7 +1,7 @@
 <?php
 
-// The client ID you received from GitHub for your GitHub App.
-$clientId = 'de110b3361aedfdcd0aa';
+// The "Client ID" you received from GitHub for your GitHub App
+$clientId = '868eab30fd6ddba062b5';
 
-// The client secret you received from GitHub for your GitHub App.
-$clientSecret = '5b4983aac7df0d2f3bcc5f0ae775ee2447604982';
+// The "Client Secret" you received from GitHub for your GitHub App
+$clientSecret = 'a2206ed0943a037438e3c635ec27ec3e6520825d';
