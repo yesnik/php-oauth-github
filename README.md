@@ -23,7 +23,7 @@ php -S 127.0.0.1:8000
 
 We registered OAuth application under our Github account and named it "PHP OAuth Github".
 
-You can register your own app and place its credentials under `config.php`. Registration of new OAuth app is located at [Settings / Developer settings](https://github.com/settings/developers). Just press button "New OAuth app".
+You can register your own app and place its credentials at `config.php`. Registration of new OAuth app is located at [Settings / Developer settings](https://github.com/settings/developers). Just press button "New OAuth app".
 
 ## Contribution
 
