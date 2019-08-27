@@ -8,7 +8,6 @@ $post = [
     'client_id' => $_POST['client_id'],
     'client_secret' => $_POST['client_secret'],
     'code'   => $_POST['code'],
-    'redirect_uri' => $_POST['redirect_uri'],
     'state' => $_POST['state'],
 ];
 curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
